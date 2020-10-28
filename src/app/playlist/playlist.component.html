@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row" style="margin-top: 5em;">
+    <img src="assets/Informations.png" alt="playlist" style="width: 8em;">
+    <div>
+      <span id="span-style-1">My playlist 1</span><br>
+      <span id="span-style-2">By artist name</span><br>
+      <span class="span-style-3">&#8212; Service</span><br>
+      <span class="span-style-3">Tracks: 6</span>
+    </div>
+    <div id="dashboard-style">
+      &#8592; Dashboard
+    </div>
+  </div>
+  <div class="row" style="margin-top: 4em;">
+    <div class="col mx-auto">
+     <div class="text-center span-style-4">Title</div>
+    </div>
+    <div class="col-1 mx-auto">
+      <div class="text-center span-style-4">Artist</div>
+    </div>
+    <div class="col-1 mx-auto">
+      <div class="text-center span-style-4">Album</div>
+    </div>
+    <div class="col-1 mx-auto">
+      <div class="text-center span-style-4">Duration</div>
+    </div>
+    <div class="col mx-auto">
+      <label style="margin-left: 8em" class="span-style-4">
+        <input type="checkbox"> All
+      </label>
+      <div style="float: right" class="span-style-4">2 Selected</div>
+    </div>
+    <div class="col-2 mx-auto">
+      <div class="">
+        <label for="exampleFormControlSelect1" class="text-center span-style-4"></label>
+        <select id="exampleFormControlSelect1">
+          <option disabled selected hidden>Actions</option>
+          <option>Delete</option>
+          <option>Transfer</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <app-playlist-item *ngFor="let track of tracks"></app-playlist-item>
+</div>

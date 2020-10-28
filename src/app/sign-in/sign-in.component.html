@@ -1,0 +1,35 @@
+<form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSignIn()">
+  <div class="text-center mb-4">
+
+    <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus>
+    <label for="inputEmail">Email address</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.email.errors">Invalid email address.</div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required>
+    <label for="inputPassword">Password</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.password.errors">Password should be at least 8 characters.</div>
+
+  <div class="form-error text-center" *ngIf="submitted && incorrectData">Incorrect email or password.</div>
+  <button class="btn btn-lg btn-dark btn-block form-control" type="submit">Sign in</button>
+  <div class="text-center mt-4">
+    <label>
+      Don't have an account? <a routerLink="../sign-up">Sign up</a>
+    </label>
+  </div>
+  <div style="position: relative" class="mt-4">
+    <ngx-spinner bdColor=""
+                 size="default"
+                 color="#000"
+                 type="ball-clip-rotate"
+                 [fullScreen]="false"></ngx-spinner>
+  </div>
+</form>

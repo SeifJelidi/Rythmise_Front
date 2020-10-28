@@ -1,0 +1,57 @@
+<form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSignUp()">
+  <div class="text-center mb-4">
+
+    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" id="inputUsername" class="form-control" placeholder="Username" formControlName="username" required autofocus>
+    <label for="inputUsername">Username</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.username.errors">Username should be at least 3 characters.</div>
+
+  <div class="form-label-group">
+    <input type="text" id="inputPhone" class="form-control" placeholder="Phone" formControlName="phone" required autofocus>
+    <label for="inputPhone">Phone</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.phone.errors">Please enter a valid phone number.</div>
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus>
+    <label for="inputEmail">Email address</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.email.errors">Invalid email address.</div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required>
+    <label for="inputPassword">Password</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.password.errors">Password should be at least 8 characters.</div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputRPassword" class="form-control" placeholder="Repeat Password" formControlName="repeatPassword" required>
+    <label for="inputRPassword">Repeat Password</label>
+  </div>
+
+  <div class="form-error text-center mt-3" *ngIf="submitted && f.repeatPassword.errors">Repeating password is required.</div>
+  <div class="form-error text-center mt-3" *ngIf="submitted && differentPasswords">Passwords don't match.</div>
+
+  <div class="form-error text-center" *ngIf="submitted && incorrectData">{{errorText}}</div>
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Sign up</button>
+  <div class="text-center mt-4">
+    <label>
+      Already have an account? <a routerLink="../sign-in">Sign in</a>
+    </label>
+  </div>
+  <div style="position: relative" class="mt-4">
+    <ngx-spinner bdColor=""
+                 size="default"
+                 color="#000"
+                 type="ball-clip-rotate"
+                 [fullScreen]="false"></ngx-spinner>
+  </div>
+</form>
