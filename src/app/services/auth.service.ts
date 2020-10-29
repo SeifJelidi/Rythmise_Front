@@ -5,31 +5,29 @@ import {BehaviorSubject, Observable} from 'rxjs';
 @Injectable()
 export class AuthService {
 
-  @Output() isSessionID: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  @Output() isSessionID: BehaviorSubject<boolean> = new BehaviorSubject(undefined);
   @Output() userID: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor(private httpClient: HttpClient) {
   }
 
-  checkLogin(email, password): Observable<any> {
-    return this.httpClient.post<any>('https://localhost:8000/login',
+  checkLogin(username, password): Observable<any> {
+    return this.httpClient.post<any>('https://rythmize.herokuapp.com/api/v1/auth/user/login',
       {
-        email,
-        password
-      }, {observe: 'response'});
-  }
-
-  addUser(email, password, username, phone): Observable<any> {
-    return this.httpClient.post<any>('https://localhost:8000/api/users',
-      {
-        email,
-        password,
         username,
-        phone,
-        image: 'https://icon-library.com/images/default-user-icon/default-user-icon-4.jpg'
+        password
       });
   }
 
+  addUser(email, password, username): Observable<any> {
+    return this.httpClient.post<any>('https://rythmize.herokuapp.com/api/v1/auth/user/register',
+      {
+        email,
+        password,
+        username
+      });
+  }
+/*
   editUser(id, email, password, username, phone, image, socials, location): Observable<any> {
     return this.httpClient.put<any>('https://localhost:8000/api/users/' + id,
       {
@@ -42,7 +40,7 @@ export class AuthService {
         location
       });
   }
-
+*/
   /*getUser(iri): Observable<any> {
     return this.httpClient.get<any>('https://localhost:8000' + iri);
   }*/

@@ -5,9 +5,9 @@
       <span id="span-style-1">My playlist 1</span><br>
       <span id="span-style-2">By artist name</span><br>
       <span class="span-style-3">&#8212; Service</span><br>
-      <span class="span-style-3">Tracks: 6</span>
+      <span class="span-style-3">Tracks: {{tracks.length}}</span>
     </div>
-    <div id="dashboard-style">
+    <div id="dashboard-style" (click)="onDashboard()">
       &#8592; Dashboard
     </div>
   </div>
@@ -42,5 +42,7 @@
     </div>
   </div>
   <hr>
-  <app-playlist-item *ngFor="let track of tracks"></app-playlist-item>
+  <app-playlist-item *ngFor="let track of tracks"
+                     [track]="track">
+  </app-playlist-item>
 </div>

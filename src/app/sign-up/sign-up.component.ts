@@ -36,8 +36,7 @@ export class SignUpComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         username: ['', [Validators.required, Validators.minLength(3)]],
-        repeatPassword: ['', Validators.required],
-        phone: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(8), Validators.maxLength(8)]]
+        repeatPassword: ['', Validators.required]
       }
     );
   }
@@ -54,7 +53,6 @@ export class SignUpComponent implements OnInit {
     const password = formSignUpValue.password;
     const repeatPassword = formSignUpValue.repeatPassword;
     const username = formSignUpValue.username;
-    const phone = formSignUpValue.phone;
 
     if (password !== repeatPassword) {
       this.differentPasswords = true;
@@ -62,8 +60,7 @@ export class SignUpComponent implements OnInit {
     }
 
     this.spinner.show();
-    console.log(phone);
-    this.authService.addUser(email, password, username, phone)
+    this.authService.addUser(email, password, username)
       .subscribe(data => {
         this.router.navigate(['../sign-in']).then();
         console.log(data);

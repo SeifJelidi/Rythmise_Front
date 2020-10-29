@@ -4,6 +4,12 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {map} from 'rxjs/operators';
+
+export interface User {
+    access_token: string;
+    verified: boolean;
+}
 
 @Component({
   selector: 'app-sign-in',
@@ -16,6 +22,7 @@ export class SignInComponent implements OnInit {
   loggedIn = false;
   incorrectData = false;
   submitted = false;
+  user;
   constructor(private formBuilder: FormBuilder,
               private httpClient: HttpClient,
               private authService: AuthService,
@@ -32,7 +39,7 @@ export class SignInComponent implements OnInit {
   initForm(): void {
     this.userForm = this.formBuilder.group(
       {
-        email: ['', [Validators.required, Validators.email]],
+        username: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(8)]]
       }
     );
@@ -46,12 +53,20 @@ export class SignInComponent implements OnInit {
     this.incorrectData = false;
     this.spinner.show();
     const formSignInValue = this.userForm.value;
-    const email = formSignInValue.email;
+    const username = formSignInValue.username;
     const password = formSignInValue.password;
 
-    this.authService.checkLogin(email, password)
-      .subscribe(userURI => {
-        this.loggedIn = true;
+    this.authService.checkLogin(username, password)
+      .subscribe(data => {
+        localStorage.setItem('token', data.access_token);
+        this.authService.isSessionID.next(true);
+        this.router.navigate(['/dashboard']).then();
+      },
+        (err) => console.log(err));
+  }
+      /*
+      subscribe(userURI => {
+       this.loggedIn = true;
         this.spinner.hide();
         this.authService.isSessionID.next(true);
         this.authService.userID.next(userURI.headers.get('location'));
@@ -61,11 +76,11 @@ export class SignInComponent implements OnInit {
             console.log(user);
             this.authService.userID.next(user.id);
             this.router.navigate(['']).then();
-          });*/
+          });
+
       }, () => {this.incorrectData = true;
         this.spinner.hide();
+      });*/
 
-      });
-  }
 
 }

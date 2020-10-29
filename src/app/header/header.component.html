@@ -1,11 +1,12 @@
 <div class="text-style d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <img src="assets/Rythmize.png" alt="Rythmize" class="my-0 mr-md-auto" routerLink="">
   <nav class="my-2 my-md-0 mr-md-3" style="margin-right: 24rem !important;">
-    <a class="p-2 link-style" routerLink="/playlist">Services</a>
-    <a class="p-2 link-style" href="#">Our Team</a>
-    <a class="p-2 link-style" href="#">About Us</a>
+    <a class="p-2 link-style" *ngIf="!connected && !isUndefined()">Services</a>
+    <a class="p-2 link-style" *ngIf="!connected && !isUndefined()">Our Team</a>
+    <a class="p-2 link-style" *ngIf="!connected && !isUndefined()">About Us</a>
   </nav>
-  <a class="px-3 font-weight-bold text-dark" routerLink="/sign-in">Sign In</a>
-  <a class="px-4 btn btn-outline-dark font-weight-bold" id="sign-up" routerLink="/sign-up">Sign Up</a>
-  <img src="assets/mdi_account_circle.png" alt="">
+  <a class="px-3 font-weight-bold text-dark" routerLink="/sign-in" href="/app/sign-in/sign-in.component.html" *ngIf="!connected && !isUndefined()">Sign In</a>
+  <a class="px-4 btn btn-outline-dark font-weight-bold" id="sign-up" routerLink="/sign-up" *ngIf="!connected && !isUndefined()">Sign Up</a>
+  <a class="px-4 btn btn-outline-dark font-weight-bold" style="margin-right: 1em;" id="logout" routerLink="" *ngIf="connected" (click)="onLogout()">Logout</a>
+  <img src="assets/mdi_account_circle.png" alt="" *ngIf="connected">
 </div>

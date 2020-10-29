@@ -1,17 +1,20 @@
-<div class="row" style="height: 5em;padding-top: 1.6em;">
+<div class="row" style="height: 5em;padding-top: 1.6em;" (click)="selectedPlaylist()">
   <div class="col-3 mx-auto">
     <div class="span-style-4">
-      <img src="assets/Youtube.png" alt="playlist">
-      <span style="margin-left: 4em;">Playlist number 1</span>
+      <img src="assets/Youtube.png" alt="playlist" *ngIf="service === 'youtube' && !selected">
+      <img src="assets/Youtube1.png" alt="playlist" *ngIf="service === 'youtube' && selected">
+      <img src="assets/Spotify.png" alt="playlist" *ngIf="service === 'spotify' && !selected">
+      <img src="assets/Spotify1.png" alt="playlist" *ngIf="service === 'spotify' && selected">
+      <span style="margin-left: 4em;">{{title}}</span>
     </div>
   </div>
   <div class="col-1 mx-auto">
-    <div class="text-center span-style-4">0 Tracks</div>
+    <div class="text-center span-style-4">{{tracks}} Tracks</div>
   </div>
   <div class="col mx-auto"></div>
   <div class="col-2 mx-auto">
     <div class="text-center span-style-4">
-      <img src="assets/Fleche.png" alt="Fleche">
+      <img src="assets/Fleche.png" alt="Fleche" (click)="enterPlaylist()">
       <img src="assets/Delete.png" alt="Delete" style="margin-left: 1em;">
     </div>
   </div>

@@ -1,25 +1,31 @@
-<div class="row" style="height: 5em;padding-top: 1.6em;">
+<div class="row" style="height: 5em;padding-top: 1.6em;" (click)="selectedTrack()">
   <div class="col mx-auto">
     <div class="span-style-4">
-      <img src="assets/Youtube.png" alt="playlist">
-      <span style="margin-left: 4em;">Playlist number 1</span>
+      <img src="assets/Youtube.png" alt="playlist" *ngIf="service === 'youtube' && !selected">
+      <img src="assets/Youtube1.png" alt="playlist" *ngIf="service === 'youtube' && selected">
+      <img src="assets/Spotify.png" alt="playlist" *ngIf="service === 'spotify' && !selected">
+      <img src="assets/Spotify1.png" alt="playlist" *ngIf="service === 'spotify' && selected">
+      <span style="margin-left: 4em;">{{title}}</span>
     </div>
   </div>
   <div class="col-1 mx-auto">
-    <div class="text-center span-style-4">Malek</div>
+    <div class="text-center span-style-4">{{artist}}</div>
   </div>
   <div class="col-1 mx-auto">
-    <div class="text-center span-style-4">softwares</div>
+    <div class="text-center span-style-4">{{album}}</div>
   </div>
   <div class="col-1 mx-auto">
-    <div class="text-center span-style-4">1:00</div>
+    <div class="text-center span-style-4">{{duration}}</div>
   </div>
   <div class="col mx-auto">
-
+    <label style="margin-left: 1em;" *ngIf="add">
+      <input type="text" class="form-control" placeholder="Enter playlist name" [(ngModel)]="playlistName">
+    </label>
+    <button type="button" class="btn btn-dark" *ngIf="add" (click)="submitAdd()">Ok</button>
   </div>
   <div class="col-2 mx-auto">
     <div class="text-center span-style-4">
-      <img src="assets/Fleche.png" alt="Fleche">
+      <img src="assets/Fleche.png" alt="Fleche" (click)="addToPlaylist()">
       <img src="assets/Delete.png" alt="Delete" style="margin-left: 1em;">
     </div>
   </div>
